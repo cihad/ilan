@@ -13,7 +13,7 @@ describe Node do
   its(:email) { should eq "example@example.com" }
   it("with valid attributes should be valid") { should be_valid }
 
-  [:title, :description, :contact, :email].each do |attr|
+  %w(title description contact email).each do |attr|
     it "blank #{attr} is not valid" do
       subject.send("#{attr}=", "")
       subject.should_not be_valid
