@@ -180,6 +180,7 @@ DEPENDENCIES
   jquery-rails
   launchy (~> 2.4.0)
   libnotify (~> 0.8.2)
+  pry
   rails (= 4.0.1)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
