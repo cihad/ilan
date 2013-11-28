@@ -1,2 +1,34 @@
 tr:
-  hello: "Merhaba Dünya"
+  helpers:
+    submit:
+      create: "Ekle"
+      update: "Güncelle"
+
+  nodes:
+    show:
+      description: "Açıklama"
+      contact: "İletişim"
+    new:
+      new_node: "Yeni ilan"
+    flash:
+      created: "İlan başarılı bir şekilde eklendi."
+      not_created: "Bu ilan kaydedilirken aşağıdaki hatalar alındı:"
+
+  activerecord:
+    errors:
+      models:
+        node:
+          blank: "alanı gerekli."
+          attributes:
+            description:
+              blank: "alanı gerekli. Lütfen az da olsa bir şeyler yazınız."
+            contact:
+              blank: "alanı gerekli. Lütfen size ulaşabilecekleri bir bilgi giriniz."
+            email:
+              invalid: "geçersiz."
+    attributes:
+      node:
+        title: "Başlık"
+        description: "Açıklama"
+        contact: "İletişim"
+        email: "Email"
