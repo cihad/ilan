@@ -4,15 +4,6 @@ tr:
       create: "Ekle"
       update: "Güncelle"
 
-  nodes:
-    show:
-      description: "Açıklama"
-      contact: "İletişim"
-    new:
-      new_node: "Yeni ilan"
-    flash:
-      created: "İlan başarılı bir şekilde eklendi."
-      not_created: "Bu ilan kaydedilirken aşağıdaki hatalar alındı:"
 
   activerecord:
     errors:
@@ -26,9 +17,40 @@ tr:
               blank: "alanı gerekli. Lütfen size ulaşabilecekleri bir bilgi giriniz."
             email:
               invalid: "geçersiz."
+        city:
+          blank: "alanı gerekli."
     attributes:
       node:
         title: "Başlık"
         description: "Açıklama"
         contact: "İletişim"
         email: "Email"
+      city:
+        name: "Şehir"
+
+  nodes:
+    show:
+      description: "Açıklama"
+      contact: "İletişim"
+    new:
+      new_node: "Yeni ilan"
+    flash:
+      created: "İlan başarılı bir şekilde eklendi."
+      not_created: "Bu ilan kaydedilirken aşağıdaki hatalar alındı:"
+
+  cities:
+    index:
+      cities: "Şehirler"
+      edit: "Düzenle"
+      destroy: "Sil"
+      are_you_sure: "Emin misiniz?"
+      city: "Şehir"
+      new_city: "Yeni şehir"
+    new:
+      new_city: "Yeni şehir"
+    edit:
+      editing_city: "Şehri düzenle"
+    flash:
+      created: "Şehir eklendi."
+      updated: "Şehir güncellendi."
+      not_created: "Şehir kaydedilemedi. Aşağıdaki hatalar alındı:"
