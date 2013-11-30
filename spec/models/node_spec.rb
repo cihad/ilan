@@ -39,5 +39,16 @@ describe Node do
       expect(subject.errors.messages).not_to be_has_key :email
     end
   end
+
+  describe "#city" do
+    it "is a City" do
+      expect(subject.city).to be_a(City)
+    end
+
+    it "required" do
+      subject.city = nil
+      subject.should_not be_valid
+    end
+  end
   
 end

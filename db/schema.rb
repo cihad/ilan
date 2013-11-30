@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131129193517) do
+ActiveRecord::Schema.define(version: 20131130105521) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20131129193517) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "city_id"
   end
+
+  add_index "nodes", ["city_id"], name: "index_nodes_on_city_id"
 
 end

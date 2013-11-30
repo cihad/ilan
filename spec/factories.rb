@@ -4,6 +4,7 @@ FactoryGirl.define do
     description "Consectetur adipisicing elit."
     contact "Excepteur sint occaecat cupidatat non"
     email "example@example.com"
+    city
   end
 
   factory :city do
