@@ -27,6 +27,10 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+  <div class="field">
+    <%= f.label :city, value: "id" %><br>
+    <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

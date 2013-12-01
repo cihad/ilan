@@ -30,10 +30,21 @@ describe "Nodes" do
     it "display contact" do
       expect(page).to have_selector 'dd address', text: node.contact
     end
+
+    it "display city title" do
+      expect(page).to have_selector 'dt', text: I18n.t('nodes.show.city')
+    end
+
+    it "display city" do
+      expect(page).to have_selector 'dd', text: node.city.name
+    end
   end
 
   describe "GET /nodes/new" do
-    before { visit "/nodes/new" }
+    before do
+      create :city, name: "Ankara"
+      visit "/nodes/new"
+    end
 
     it "renders" do
       expect(page.status_code).to be(200)
@@ -53,6 +64,7 @@ describe "Nodes" do
             fill_in "node_description", with: valid_attributes[:description]
             fill_in "node_contact", with: valid_attributes[:contact]
             fill_in "node_email", with: valid_attributes[:email]
+            select  "Ankara", from: "node_city_id"
             click_on I18n.t('helpers.submit.create')
           end
         }.to change(Node, :count).by(1)
@@ -79,7 +91,7 @@ describe "Nodes" do
           end
         }.to_not change(Node, :count)
 
-        [:title, :description, :contact, :email].each do |attr|
+        [:title, :description, :contact, :email, :city].each do |attr|
           expect(page).to have_selector ".field_with_errors label",
                           text: attribute_name(attr)          
         end
@@ -95,6 +107,7 @@ describe "Nodes" do
             fill_in "node_description", with: valid_attributes[:description]
             fill_in "node_contact", with: valid_attributes[:contact]
             fill_in "node_email", with: "invalid_email"
+            select  "Ankara", from: "node_city_id"
             click_on I18n.t('helpers.submit.create')
           end
         }.to_not change(Node, :count)
