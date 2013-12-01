@@ -35,6 +35,7 @@ tr:
     show:
       description: "Açıklama"
       contact: "İletişim"
+      city: "Şehir"
     new:
       new_node: "Yeni ilan"
     flash:
