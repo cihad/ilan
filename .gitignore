@@ -14,3 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore editor specific .project file
+*.sublime-project
+*.sublime-workspace
