@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe NodesController do
 
-  let(:valid_attributes) { FactoryGirl.attributes_for :node }
+  let(:city) { create :city }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:node).merge(city_id: city.id) }
   let(:valid_session) { {} }
 
   describe "GET show" do
