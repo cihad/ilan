@@ -1,4 +1,10 @@
 tr:
+  errors:
+    messages:
+      taken: "daha önce alındı."
+      blank: "boş bırakılamaz."
+
+
   helpers:
     select:
       prompt: "Lütfen seçiniz"
@@ -21,6 +27,8 @@ tr:
               invalid: "geçersiz."
         city:
           blank: "alanı gerekli."
+        category:
+          taken: "daha önce eklenmiş."
     attributes:
       node:
         title: "Başlık"
@@ -30,6 +38,8 @@ tr:
         city: "Şehir"
       city:
         name: "Şehir"
+      category:
+        name: "Kategori"
 
   nodes:
     show:
@@ -58,3 +68,20 @@ tr:
       created: "Şehir eklendi."
       updated: "Şehir güncellendi."
       not_created: "Şehir kaydedilemedi. Aşağıdaki hatalar alındı:"
+
+  categories:
+    index:
+      categories: "Kategoriler"
+      edit: "Düzenle"
+      destroy: "Sil"
+      are_you_sure: "Emin misiniz?"
+      category: "Kategori"
+      new_category: "Yeni kategori"
+    new:
+      new_category: "Yeni kategori"
+    edit:
+      editing_category: "Kategoriyi düzenle"
+    flash:
+      created: "Kategori eklendi."
+      updated: "Kategori güncellendi."
+      not_created: "Kategori kaydedilemedi. Aşağıdaki hatalar alındı:"

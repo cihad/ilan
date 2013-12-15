@@ -10,4 +10,8 @@ FactoryGirl.define do
   factory :city do
     sequence(:name) {|n| "Ankara #{n}" }
   end
+
+  factory :category do
+    sequence(:name) { |n| "Emlak #{n}" }
+  end
 end

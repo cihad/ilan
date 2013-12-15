@@ -1,0 +1,25 @@
+<h1><%=t '.categories' %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%=t '.category' %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= link_to t('.edit'), edit_category_path(category) %></td>
+        <td><%= link_to t('.destroy'), category, method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('.new_category'), new_category_path %>
