@@ -87,5 +87,32 @@ describe Node do
       subject.should be_expired
     end
   end
-  
+
+  describe "sends mail to user about node status" do
+    before do
+      subject.save
+    end
+
+    let(:last_mail_subject) { ActionMailer::Base.deliveries.last.subject }
+
+    def mail_subject m
+      I18n.t("node_status_mailer.#{m}.subject")
+    end
+
+    it "sends an email to user after published" do
+      subject.publish!
+      last_mail_subject.should eq(mail_subject('published'))
+    end
+
+    it "sends an email to user after rejected" do
+      subject.reject!
+      last_mail_subject.should eq(mail_subject('rejected'))
+    end
+
+    it "sends an email to user after expired" do
+      subject.publish!
+      subject.expire!
+      last_mail_subject.should eq(mail_subject('expired'))
+    end
+  end
 end

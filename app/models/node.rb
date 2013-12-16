@@ -28,4 +28,16 @@ class Node < ActiveRecord::Base
     state :rejected
   end
 
+  def publish
+    NodeStatusMailer.published(self).deliver!
+  end
+
+  def reject reason = ""
+    NodeStatusMailer.rejected(self, reason).deliver!
+  end
+
+  def expire
+    NodeStatusMailer.expired(self).deliver!
+  end
+
 end
