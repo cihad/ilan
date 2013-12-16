@@ -53,6 +53,8 @@ tr:
     flash:
       created: "İlan başarılı bir şekilde eklendi."
       not_created: "Bu ilan kaydedilirken aşağıdaki hatalar alındı:"
+    rejected_reasons:
+      reason: "İlan ekleme kurallarına uymadığınızdan dolayı ilanınız yayınlanmadı."
 
   cities:
     index:
@@ -87,3 +89,14 @@ tr:
       created: "Kategori eklendi."
       updated: "Kategori güncellendi."
       not_created: "Kategori kaydedilemedi. Aşağıdaki hatalar alındı:"
+
+  node_status_mailer:
+    published:
+      subject: "İlanınız yayınlandı"
+      body: "'%{title}' <%{node_url}> ilanınız başarıyla yayınlandı. İlanın yayında kalma süresi 30 gündür. Bu süre sonunda ilanınınız silinecek ve size bilgilendirme maili göndereceğiz."
+    rejected:
+      subject: "İlanınız yayınlanamadı"
+      body: "'%{title}' başlıklı ilanınız '%{reason}' nedeninden dolayı yayınlanamadı."
+    expired:
+      subject: "İlanınızın yayın süresi doldu"
+      body: "'%{title}' başlıklı ilanınız yayından kaldırıldı. (İlanların yayında kalma süresi 30 gündür.) Eğer hala ihtiyaç duyuyorsanız yeniden ilanınızı ekleyebilirsiniz. %{new_node_url}"
