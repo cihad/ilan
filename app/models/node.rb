@@ -11,6 +11,21 @@ class Node < ActiveRecord::Base
   belongs_to :city
   belongs_to :category
 
+  # Workflow
+  include Workflow
+  workflow_column :status
+  workflow do
+    state :pending_approval do
+      event :publish, :transitions_to => :published
+      event :reject, :transitions_to => :rejected
+    end
 
+    state :published do
+      event :expire, :transitions_to => :expired
+    end
+
+    state :expired
+    state :rejected
+  end
 
 end

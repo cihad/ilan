@@ -61,5 +61,31 @@ describe Node do
       subject.should_not be_valid
     end
   end
+
+  describe "workflow" do
+    before do
+      subject.save
+    end
+
+    it "is pending approval after create" do
+      subject.should be_pending_approval
+    end
+
+    it "is published after accept" do
+      subject.publish!
+      subject.should be_published
+    end
+
+    it "is rejected after reject" do
+      subject.reject!
+      subject.should be_rejected
+    end
+
+    it "is expired after expire" do
+      subject.publish!
+      subject.expire!
+      subject.should be_expired
+    end
+  end
   
 end
