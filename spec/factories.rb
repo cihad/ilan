@@ -5,6 +5,7 @@ FactoryGirl.define do
     contact "Excepteur sint occaecat cupidatat non"
     email "example@example.com"
     city
+    category
   end
 
   factory :city do

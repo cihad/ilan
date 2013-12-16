@@ -50,5 +50,16 @@ describe Node do
       subject.should_not be_valid
     end
   end
+
+  describe "#category" do
+    it "is a Category" do
+      expect(subject.category).to be_a(Category)
+    end
+
+    it "required" do
+      subject.category = nil
+      subject.should_not be_valid
+    end
+  end
   
 end

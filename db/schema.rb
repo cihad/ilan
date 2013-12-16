@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215143038) do
+ActiveRecord::Schema.define(version: 20131215184218) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20131215143038) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "city_id"
+    t.integer  "category_id"
   end
 
+  add_index "nodes", ["category_id"], name: "index_nodes_on_category_id"
   add_index "nodes", ["city_id"], name: "index_nodes_on_city_id"
 
 end

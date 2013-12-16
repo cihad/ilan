@@ -31,6 +31,10 @@
     <%= f.label :city, value: "id" %><br>
     <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
   </div>
+  <div class="field">
+    <%= f.label :category, value: "id" %><br>
+    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: true %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

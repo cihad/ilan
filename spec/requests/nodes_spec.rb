@@ -38,11 +38,20 @@ describe "Nodes" do
     it "display city" do
       expect(page).to have_selector 'dd', text: node.city.name
     end
+
+    it "display category title" do
+      expect(page).to have_selector 'dt', text: I18n.t('nodes.show.category')
+    end
+
+    it "display category" do
+      expect(page).to have_selector 'dd', text: node.category.name
+    end
   end
 
   describe "GET /nodes/new" do
     before do
       create :city, name: "Ankara"
+      create :category, name: "Emlak"
       visit "/nodes/new"
     end
 
@@ -65,6 +74,7 @@ describe "Nodes" do
             fill_in "node_contact", with: valid_attributes[:contact]
             fill_in "node_email", with: valid_attributes[:email]
             select  "Ankara", from: "node_city_id"
+            select  "Emlak", from: "node_category_id"
             click_on I18n.t('helpers.submit.create')
           end
         }.to change(Node, :count).by(1)
@@ -91,7 +101,7 @@ describe "Nodes" do
           end
         }.to_not change(Node, :count)
 
-        [:title, :description, :contact, :email, :city].each do |attr|
+        [:title, :description, :contact, :email, :city, :category].each do |attr|
           expect(page).to have_selector ".field_with_errors label",
                           text: attribute_name(attr)          
         end
@@ -108,6 +118,7 @@ describe "Nodes" do
             fill_in "node_contact", with: valid_attributes[:contact]
             fill_in "node_email", with: "invalid_email"
             select  "Ankara", from: "node_city_id"
+            select  "Emlak", from: "node_category_id"
             click_on I18n.t('helpers.submit.create')
           end
         }.to_not change(Node, :count)

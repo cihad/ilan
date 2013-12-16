@@ -36,6 +36,7 @@ tr:
         contact: "İletişim"
         email: "Email"
         city: "Şehir"
+        category: "Kategori"
       city:
         name: "Şehir"
       category:
@@ -46,6 +47,7 @@ tr:
       description: "Açıklama"
       contact: "İletişim"
       city: "Şehir"
+      category: "Kategori"
     new:
       new_node: "Yeni ilan"
     flash:
