@@ -11,3 +11,6 @@
  *= require_self
  *= require_tree .
  */
+
+@import "bootstrap/bootstrap";
+@import "bootstrap/bootstrap-theme";
