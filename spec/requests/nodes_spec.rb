@@ -102,12 +102,9 @@ describe "Nodes" do
         }.to_not change(Node, :count)
 
         [:title, :description, :contact, :email, :city, :category].each do |attr|
-          expect(page).to have_selector ".field_with_errors label",
+          expect(page).to have_selector ".has-error label",
                           text: attribute_name(attr)          
         end
-
-        expect(page).to have_selector '#error_explanation',
-                        text: I18n.t('nodes.flash.not_created')
       end
 
       it "if email is invalid, dont creates" do
@@ -123,10 +120,10 @@ describe "Nodes" do
           end
         }.to_not change(Node, :count)
 
-        expect(page).to have_selector ".field_with_errors label",
+        expect(page).to have_selector ".has-error label",
                         text: attribute_name(:email)
 
-        expect(page).to have_selector "#error_explanation li",
+        expect(page).to have_selector ".has-error .help-block",
           text: I18n.t('activerecord.errors.models.node.attributes.email.invalid')
       end
     end

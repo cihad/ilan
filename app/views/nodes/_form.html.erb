@@ -1,41 +1,22 @@
-<%= form_for(@node) do |f| %>
-  <% if @node.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('nodes.flash.not_created') %></h2>
-
-      <ul>
-      <% @node.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%
+SimpleForm.setup do |config|
+  config.wrappers :delivery, tag: 'div', class: 'form-group' do |b|
+    b.wrapper tag: 'div', class: 'col-sm-offset-3 col-sm-9' do |ba|
+      ba.use :input
+    end
+  end
+end
+%>
+<%= simple_form_for(@node, html: {class: "form-horizontal"}) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :contact, as: :text %>
+  <%= f.input :email, as: :email %>
+  <%= f.association :city %>
+  <%= f.association :category %>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= f.button :submit, class: "btn-primary" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :contact %><br>
-    <%= f.text_area :contact %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :city, value: "id" %><br>
-    <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
-  </div>
-  <div class="field">
-    <%= f.label :category, value: "id" %><br>
-    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: true %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>
