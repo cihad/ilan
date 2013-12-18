@@ -1,5 +1,7 @@
 class NodesController < ApplicationController
 
+  layout :set_layout
+
   def show
     @node = Node.find(params[:id])
   end
@@ -27,5 +29,12 @@ class NodesController < ApplicationController
     def node_params
       params.require(:node).permit( :title, :email, :description, :contact,
                                     :city_id, :category_id)
+    end
+
+    def set_layout
+      case params[:action]
+        when "new" then "simple"
+        else            "application"
+      end
     end
 end

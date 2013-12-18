@@ -57,6 +57,7 @@ tr:
       not_created: "Bu ilan kaydedilirken aşağıdaki hatalar alındı:"
     rejected_reasons:
       reason: "İlan ekleme kurallarına uymadığınızdan dolayı ilanınız yayınlanmadı."
+    add_new_node: "İlan ekle"
 
   cities:
     index:
