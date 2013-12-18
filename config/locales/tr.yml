@@ -1,4 +1,6 @@
 tr:
+  site_name: "Fastİlan"
+
   errors:
     messages:
       taken: "daha önce alındı."

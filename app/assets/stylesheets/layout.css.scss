@@ -1,0 +1,68 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 34px;
+}
+
+.header-col {
+  margin-bottom: 20px;
+}
+
+#logo .glyphicon {
+  line-height: 17px;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  .form-horizontal .control-label {
+    text-align: left;
+  }
+}
+
+/* Supporting marketing content */
+.marketing p {
+  margin-bottom: 20px;
+}
+
+.marketing h4 {
+  margin-top: 0;
+  line-height: 30px;
+  /*border-bottom: 1px solid #3A87AD;*/
+  border-bottom: 1px solid #953B39;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.marketing h4 .glyphicon {
+  font-size: 18px;
+  line-height: 15px !important;
+  margin-right: 2px;
+}
