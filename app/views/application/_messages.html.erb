@@ -1,0 +1,16 @@
+<% if alert or notice %>
+  <% if alert %>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">&times;</a>
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <% if notice %>
+    <div class="alert alert-success">
+      <a class="close" data-dismiss="alert">&times;</a>
+      <%= notice %>
+    </div>
+  <% end %>
+  <!-- /messages -->
+<% end %>
