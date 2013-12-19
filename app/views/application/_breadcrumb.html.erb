@@ -1,9 +1,9 @@
 <!-- Breadcrumb -->
-<div class="row hidden-xs">
-  <div class="col-sm-7">
-    <ol class="breadcrumb">
-      <li class="active">Anasayfa</li>
-    </ol>
+<% if breadcrumbs.present? %>
+  <div class="row hidden-xs">
+    <div class="col-sm-7">
+      <%= render "breadcrumbs/breadcrumbs" %>
+    </div>
   </div>
-</div>
+<% end %>
 <!-- /Breadcrumb -->
