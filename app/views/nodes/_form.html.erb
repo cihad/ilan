@@ -1,12 +1,3 @@
-<%
-SimpleForm.setup do |config|
-  config.wrappers :delivery, tag: 'div', class: 'form-group' do |b|
-    b.wrapper tag: 'div', class: 'col-sm-offset-3 col-sm-9' do |ba|
-      ba.use :input
-    end
-  end
-end
-%>
 <%= simple_form_for(@node, html: {class: "form-horizontal"}) do |f| %>
   <%= f.input :title %>
   <%= f.input :description, as: :text %>
