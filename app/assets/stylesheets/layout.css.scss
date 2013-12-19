@@ -33,6 +33,16 @@ body {
   padding: 0;
 }
 
+.page {
+  margin-bottom: 20px;
+}
+
+.page .page-header:first-child {
+  margin-top: 0;
+
+  h3 { margin: 0; }
+}
+
 /* Custom page footer */
 .footer {
   padding-top: 19px;
