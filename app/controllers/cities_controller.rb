@@ -18,16 +18,18 @@ class CitiesController < ApplicationController
     if @city.save
       redirect_to cities_path, notice: I18n.t('cities.flash.created')
     else
+      flash[:alert] = I18n.t('cities.flash.not_created')
       render action: 'new'
     end
   end
 
   def update
-      if @city.update(city_params)
-        redirect_to cities_path, notice: I18n.t('cities.flash.updated')
-      else
-        render action: 'edit'
-      end
+    if @city.update(city_params)
+      redirect_to cities_path, notice: I18n.t('cities.flash.updated')
+    else
+      flash[:alert] = I18n.t('cities.flash.not_updated')
+      render action: 'edit'
+    end
   end
 
   def destroy

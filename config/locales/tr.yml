@@ -74,7 +74,8 @@ tr:
     flash:
       created: "Şehir eklendi."
       updated: "Şehir güncellendi."
-      not_created: "Şehir kaydedilemedi. Aşağıdaki hatalar alındı:"
+      not_created: "Şehir kaydedilemedi. Lütfen formu gözden geçirin."
+      not_updated: "Şehir güncellenmedi. Lütfen formu gözden geçirin."
 
   categories:
     index:

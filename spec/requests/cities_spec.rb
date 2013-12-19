@@ -37,10 +37,8 @@ describe "Cities" do
       visit new_city_path
       attrs = FactoryGirl.attributes_for :city 
       expect {
-        within("//form[@id='new_city']") do
-          fill_in "city_name", with: attrs[:name]
-          click_on I18n.t('helpers.submit.create')
-        end
+        fill_in "city_name", with: attrs[:name]
+        click_on I18n.t('helpers.submit.create')
       }.to change(City, :count).by(1)
 
       expect(page).to have_content I18n.t('cities.flash.created')
@@ -60,10 +58,8 @@ describe "Cities" do
 
     it "modify existing city" do
       expect {
-        within("//form[@class='edit_city']") do
-          fill_in "city_name", with: "ExampleCity"
-          click_on I18n.t('helpers.submit.update')
-        end
+        fill_in "city_name", with: "ExampleCity"
+        click_on I18n.t('helpers.submit.update')
       }.to_not change(City, :count)
 
       expect(page).to have_content I18n.t('cities.flash.updated')
@@ -74,12 +70,10 @@ describe "Cities" do
       fill_in "city_name", with: ""
       click_on I18n.t('helpers.submit.update')
     
-      expect(page).to have_content I18n.t('cities.flash.not_created')
-
-      expect(page).to have_selector "#error_explanation li",
+      expect(page).to have_selector ".has-error .help-block",
         text: I18n.t('activerecord.errors.models.city.blank')
 
-      expect(page).to have_selector ".field_with_errors label",
+      expect(page).to have_selector ".has-error label",
         text: I18n.t('activerecord.attributes.city.name')
     end
   end
