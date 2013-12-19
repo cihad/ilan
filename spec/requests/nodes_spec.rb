@@ -12,7 +12,7 @@ describe "Nodes" do
     end
 
     it "display title" do
-      expect(page).to have_selector 'h1', text: node.title
+      expect(page).to have_selector '.page-header', text: node.title
     end
 
     it "display description title" do
@@ -60,7 +60,7 @@ describe "Nodes" do
     end
 
     it "display new node title" do
-      expect(page).to have_selector 'h1', text: I18n.t('nodes.new.new_node')
+      expect(page).to have_selector '.page-header', text: I18n.t('nodes.new.new_node')
     end
 
     context "#with valid attributes" do
