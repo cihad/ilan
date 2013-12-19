@@ -91,7 +91,8 @@ tr:
     flash:
       created: "Kategori eklendi."
       updated: "Kategori güncellendi."
-      not_created: "Kategori kaydedilemedi. Aşağıdaki hatalar alındı:"
+      not_created: "Kategori kaydedilemedi. Lütfen formu gözden geçirin."
+      not_updated: "Kategori güncellenmedi. Lütfen formu gözden geçirin."
 
   node_status_mailer:
     published:

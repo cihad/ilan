@@ -35,10 +35,8 @@ describe "Cities" do
       visit new_category_path
       attrs = FactoryGirl.attributes_for :category 
       expect {
-        within("//form[@id='new_category']") do
-          fill_in "category_name", with: attrs[:name]
-          click_on I18n.t('helpers.submit.create')
-        end
+        fill_in "category_name", with: attrs[:name]
+        click_on I18n.t('helpers.submit.create')
       }.to change(Category, :count).by(1)
 
       expect(page).to have_content I18n.t('categories.flash.created')
@@ -58,10 +56,8 @@ describe "Cities" do
 
     it "modify existing category" do
       expect {
-        within("//form[@class='edit_category']") do
-          fill_in "category_name", with: "ExampleCategory"
-          click_on I18n.t('helpers.submit.update')
-        end
+        fill_in "category_name", with: "ExampleCategory"
+        click_on I18n.t('helpers.submit.update')
       }.to_not change(Category, :count)
 
       expect(page).to have_content I18n.t('categories.flash.updated')
@@ -71,13 +67,13 @@ describe "Cities" do
     it "display error messages" do
       fill_in "category_name", with: ""
       click_on I18n.t('helpers.submit.update')
-    
-      expect(page).to have_content I18n.t('categories.flash.not_created')
 
-      expect(page).to have_selector "#error_explanation li",
+      expect(page).to have_content I18n.t('categories.flash.not_updated')
+
+      expect(page).to have_selector ".has-error .help-block",
         text: I18n.t('errors.messages.blank')
 
-      expect(page).to have_selector ".field_with_errors label",
+      expect(page).to have_selector ".has-error label",
         text: I18n.t('activerecord.attributes.category.name')
     end
   end
