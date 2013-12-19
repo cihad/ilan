@@ -54,7 +54,7 @@ tr:
       new_node: "Yeni ilan"
     flash:
       created: "İlan başarılı bir şekilde eklendi."
-      not_created: "Bu ilan kaydedilirken aşağıdaki hatalar alındı:"
+      not_created: "İlan kaydedilemedi. Lütfen formu gözden geçirin."
     rejected_reasons:
       reason: "İlan ekleme kurallarına uymadığınızdan dolayı ilanınız yayınlanmadı."
     add_new_node: "İlan ekle"
