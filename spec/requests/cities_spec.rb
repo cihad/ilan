@@ -25,16 +25,26 @@ describe "Cities" do
         expect(page).to have_selector "a", text: I18n.t("cities.index.#{word}")
       end
     end
+
+    it "display breadcrumbs" do
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("home")
+
+      expect(page).to have_selector '.breadcrumb li',
+                      text: I18n.t("cities.index.cities")
+    end
   end
 
   describe "GET /cities/new" do
-    it "display new city title" do
+    before do
       visit new_city_path
+    end
+
+    it "display new city title" do
       expect(page).to have_content I18n.t('cities.new.new_city')
     end
 
     it "creates a new city"  do
-      visit new_city_path
       attrs = FactoryGirl.attributes_for :city 
       expect {
         fill_in "city_name", with: attrs[:name]
@@ -42,6 +52,17 @@ describe "Cities" do
       }.to change(City, :count).by(1)
 
       expect(page).to have_content I18n.t('cities.flash.created')
+    end
+
+    it "display breadcrumbs" do
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("home")
+
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("cities.index.cities")
+
+      expect(page).to have_selector '.breadcrumb li',
+                      text: I18n.t("cities.new.new_city")
     end
   end
 
@@ -75,6 +96,17 @@ describe "Cities" do
 
       expect(page).to have_selector ".has-error label",
         text: I18n.t('activerecord.attributes.city.name')
+    end
+
+    it "display breadcrumbs" do
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("home")
+
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("cities.index.cities")
+
+      expect(page).to have_selector '.breadcrumb li',
+                      text: I18n.t("cities.edit.editing_city")
     end
   end
 

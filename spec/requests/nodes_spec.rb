@@ -46,6 +46,14 @@ describe "Nodes" do
     it "display category" do
       expect(page).to have_selector 'dd', text: node.category.name
     end
+
+    it "display breadcrumb" do
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t('home')
+
+      expect(page).to have_selector '.breadcrumb li',
+                      text: node.title
+    end
   end
 
   describe "GET /nodes/new" do

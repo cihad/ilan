@@ -1,5 +1,6 @@
 tr:
   site_name: "Fastİlan"
+  home: "Anasayfa"
 
   errors:
     messages:

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Cities" do
+describe "Categories" do
   describe "GET /categories" do
     before do
       category1 = stub_model(Category, name: "Emlak")
@@ -23,16 +23,26 @@ describe "Cities" do
         expect(page).to have_selector "a", text: I18n.t("categories.index.#{word}")
       end
     end
+
+    it "display breadcrumbs" do
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("home")
+
+      expect(page).to have_selector '.breadcrumb li',
+                      text: I18n.t("categories.index.categories")
+    end
   end
 
   describe "GET /categories/new" do
-    it "display new category title" do
+    before do
       visit new_category_path
+    end
+    
+    it "display new category title" do
       expect(page).to have_content I18n.t('categories.new.new_category')
     end
 
     it "creates a new category"  do
-      visit new_category_path
       attrs = FactoryGirl.attributes_for :category 
       expect {
         fill_in "category_name", with: attrs[:name]
@@ -40,6 +50,17 @@ describe "Cities" do
       }.to change(Category, :count).by(1)
 
       expect(page).to have_content I18n.t('categories.flash.created')
+    end
+
+    it "display breadcrumbs" do
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("home")
+
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("categories.index.categories")
+
+      expect(page).to have_selector '.breadcrumb li',
+                      text: I18n.t("categories.new.new_category")
     end
   end
 
@@ -75,6 +96,17 @@ describe "Cities" do
 
       expect(page).to have_selector ".has-error label",
         text: I18n.t('activerecord.attributes.category.name')
+    end
+
+    it "display breadcrumbs" do
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("home")
+
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: I18n.t("categories.index.categories")
+
+      expect(page).to have_selector '.breadcrumb li',
+                      text: I18n.t("categories.edit.editing_category")
     end
   end
 
