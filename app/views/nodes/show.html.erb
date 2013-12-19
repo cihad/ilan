@@ -2,7 +2,7 @@
 <% breadcrumbs.item t('home'), root_path %>
 <% breadcrumbs.item @node.title %>
 
-<dl>
+<dl class="dl-horizontal">
   <dt><%=t '.description' %></dt>
   <dd><p><%= @node.description %></p></dd>
 
@@ -10,8 +10,8 @@
   <dd><address><%= @node.contact %></address></dd>
 
   <dt><%=t '.city' %></dt>
-  <dd><%= @node.city.name %></dd>
+  <dd><p><%= @node.city.name %></p></dd>
 
   <dt><%=t '.category' %></dt>
-  <dd><%= @node.category.name %></dd>
+  <dd><p><%= @node.category.name %></p></dd>
 </dl>
