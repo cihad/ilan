@@ -1,0 +1,2 @@
+module Control::BaseHelper
+end
