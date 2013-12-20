@@ -2,6 +2,8 @@ tr:
   site_name: "Fastİlan"
   home: "Anasayfa"
 
+  control: "Site Kontrol"
+
   errors:
     messages:
       taken: "daha önce alındı."

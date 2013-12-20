@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "Cities" do
+describe "Control::Cities" do
   describe "GET /cities" do
     before do
       city1 = stub_model(City, name: "Ankara")
       city2 = stub_model(City, name: "Bursa")
       City.stub(:all).and_return([city1, city2])
-      visit cities_path
+      visit control_cities_path
     end
 
     it "display cities" do
@@ -37,7 +37,7 @@ describe "Cities" do
 
   describe "GET /cities/new" do
     before do
-      visit new_city_path
+      visit new_control_city_path
     end
 
     it "display new city title" do
@@ -70,7 +70,7 @@ describe "Cities" do
     let!(:city) { create :city }
 
     before do
-      visit edit_city_path city
+      visit edit_control_city_path city
     end
 
     it "display editing city title" do
@@ -113,7 +113,7 @@ describe "Cities" do
   describe "DELETE /cities/:id" do
     it "destroys city" do
       city = create :city
-      visit cities_path
+      visit control_cities_path
       expect {
         click_link I18n.t('cities.index.destroy')
       }.to change(City, :count).by(-1)

@@ -1,0 +1,28 @@
+<%= page_title t('cities.index.cities') %>
+<% breadcrumbs.item t('cities.index.cities') %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%=t 'cities.index.city' %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= city.name %></td>
+        <td><%= link_to t('cities.index.edit'), edit_control_city_path(city) %></td>
+        <td><%= link_to t('cities.index.destroy'), 
+                        ['control', city], 
+                        method: :delete, 
+                        data: { confirm: t('cities.index.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('cities.index.new_city'), new_control_city_path, class: "btn btn-primary" %>

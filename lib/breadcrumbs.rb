@@ -14,8 +14,4 @@ BreadcrumbItem = Struct.new(:name, :path) do
   def active?
     path.nil?
   end
-
-  def to_partial_path
-    "breadcrumbs/item"
-  end
 end

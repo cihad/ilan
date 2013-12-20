@@ -1,0 +1,25 @@
+<%= page_title t('categories.index.categories') %>
+<% breadcrumbs.item t('categories.index.categories') %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%=t 'categories.index.category' %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= link_to t('categories.index.edit'), edit_control_category_path(category) %></td>
+        <td><%= link_to t('categories.index.destroy'), ['control', category], method: :delete, data: { confirm: t('categories.index.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('categories.index.new_category'), new_control_category_path, class: "btn btn-primary" %>

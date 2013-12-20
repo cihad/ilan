@@ -1,0 +1,13 @@
+<ul class="list-group">
+  <li class="list-group-item" id="control">
+    <%= link_to_unless_current t('control'), control_path %>
+  </li>
+  <li class="list-group-item" id="category">
+    <span class="badge"><%= Category.count %></span>
+    <%= link_to_unless_current t('categories.index.categories'), control_categories_path %>
+  </li>
+  <li class="list-group-item" id="category">
+    <span class="badge"><%= City.count %></span>
+    <%= link_to_unless_current t('cities.index.cities'), control_cities_path %>
+  </li>
+</ul>

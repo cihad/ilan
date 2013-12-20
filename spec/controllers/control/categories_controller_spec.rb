@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CategoriesController do
+describe Control::CategoriesController do
 
   let(:valid_attributes) { FactoryGirl.attributes_for :category }
   let(:valid_session) { {} }
@@ -47,7 +47,7 @@ describe CategoriesController do
 
       it "redirects to the created category" do
         post :create, {:category => valid_attributes}, valid_session
-        response.should redirect_to(categories_url)
+        response.should redirect_to(control_categories_url)
       end
     end
 
@@ -83,7 +83,7 @@ describe CategoriesController do
       it "redirects to the category" do
         category = Category.create! valid_attributes
         put :update, {:id => category.to_param, :category => valid_attributes}, valid_session
-        response.should redirect_to(categories_path)
+        response.should redirect_to(control_categories_path)
       end
     end
 
@@ -115,7 +115,7 @@ describe CategoriesController do
     it "redirects to the categories list" do
       category = create :category
       delete :destroy, {:id => category.to_param}, valid_session
-      response.should redirect_to(categories_url)
+      response.should redirect_to(control_categories_url)
     end
   end
 

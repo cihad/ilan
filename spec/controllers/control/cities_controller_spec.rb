@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CitiesController do
+describe Control::CitiesController do
 
   let(:valid_attributes) { FactoryGirl.attributes_for :city }
   let(:invalid_attributes) { valid_attributes.merge(name: "") }
@@ -52,7 +52,7 @@ describe CitiesController do
         City.stub(:new).and_return(city)
         controller.stub(:city_params)
         post :create
-        response.should redirect_to(cities_path)
+        response.should redirect_to(control_cities_path)
       end
     end
 
@@ -90,7 +90,7 @@ describe CitiesController do
         City.any_instance.stub(:update).and_return(true)
         controller.stub(:city_params)
         put :update, {:id => city.to_param }, valid_session
-        response.should redirect_to(cities_path)
+        response.should redirect_to(control_cities_path)
       end
     end
 
@@ -118,7 +118,7 @@ describe CitiesController do
 
     it "redirects to the cities list" do
       delete :destroy, {:id => city.to_param}, valid_session
-      response.should redirect_to(cities_url)
+      response.should redirect_to(control_cities_url)
     end
   end
 

@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Ilan</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
+<%= render 'head' %>
+<%= render 'header' %>
 
-    <%= render 'header'   %>
-
-    <div class="container">
-      <div class="row page">
-        <div class="col-sm-12">
-          <%= render 'messages' %>
-          <%= yield %>
-        </div>
-      </div>
+<div class="container">
+  <div class="row page">
+    <div class="col-sm-12">
+      <%= render 'messages' %>
+      <%= yield %>
     </div>
+  </div>
+</div>
 
-  </body>
-</html>
+<%= render 'foot' %>

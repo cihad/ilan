@@ -6,7 +6,7 @@ describe "Categories" do
       category1 = stub_model(Category, name: "Emlak")
       category2 = stub_model(Category, name: "Vasita")
       Category.stub(:all).and_return([category1, category2])
-      visit categories_path
+      visit control_categories_path
     end
 
     it "display categories" do
@@ -35,7 +35,7 @@ describe "Categories" do
 
   describe "GET /categories/new" do
     before do
-      visit new_category_path
+      visit new_control_category_path
     end
     
     it "display new category title" do
@@ -68,7 +68,7 @@ describe "Categories" do
     let!(:category) { create :category }
 
     before do
-      visit edit_category_path category
+      visit edit_control_category_path category
     end
 
     it "display editing category title" do
@@ -113,7 +113,7 @@ describe "Categories" do
   describe "DELETE /categories/:id" do
     it "destroys category" do
       category = create :category
-      visit categories_path
+      visit control_categories_path
       expect {
         click_link I18n.t('categories.index.destroy')
       }.to change(Category, :count).by(-1)
