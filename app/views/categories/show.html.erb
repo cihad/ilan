@@ -1,0 +1,12 @@
+<%= page_title @category.name %>
+<% breadcrumbs.item @category.name %>
+
+<table class="table table-hover table-condensed node-table">
+  <tbody>
+    <% @nodes.each do |node| %>
+      <tr>
+        <td><%= link_to node.title, node %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

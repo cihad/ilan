@@ -3,6 +3,8 @@ Ilan::Application.routes.draw do
   
   get "home_page/index"
 
+  resources :categories, only: :show
+
   resources :nodes, only: [:show, :new, :create]
 
   namespace :control do
@@ -10,7 +12,6 @@ Ilan::Application.routes.draw do
     resources :categories, except: :show
     resources :cities, except: [:show]
   end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
