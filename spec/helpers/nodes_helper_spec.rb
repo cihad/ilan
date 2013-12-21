@@ -1,15 +1,10 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the NodesHelper. For example:
-#
-# describe NodesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 describe NodesHelper do
-  # pending "add some examples to (or delete) #{__FILE__}"
+
+  it "#truncated_node_title" do
+    node = double title: "a" * 40
+    expect(helper.truncated_node_title(node).size).to eq(30)
+  end
+
 end
