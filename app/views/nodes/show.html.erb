@@ -1,4 +1,5 @@
 <%= page_title @node.title %>
+<% breadcrumbs.item @node.category.name, @node.category %>
 <% breadcrumbs.item @node.title %>
 
 <dl class="dl-horizontal">

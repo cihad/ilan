@@ -51,6 +51,9 @@ describe "Nodes" do
       expect(page).to have_selector '.breadcrumb li a',
                       text: I18n.t('home')
 
+      expect(page).to have_selector '.breadcrumb li a',
+                      text: node.category.name
+
       expect(page).to have_selector '.breadcrumb li',
                       text: node.title
     end
