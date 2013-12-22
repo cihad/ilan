@@ -5,6 +5,10 @@ describe Control::CategoriesController do
   let(:valid_attributes) { FactoryGirl.attributes_for :category }
   let(:valid_session) { {} }
 
+  before do
+    login_as_admin
+  end
+
   describe "GET index" do
     it "assigns all categories as @categories" do
       category = double
