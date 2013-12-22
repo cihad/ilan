@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe "Control::Cities" do
-  describe "GET /cities" do
+  before do
+    login_as_admin
+  end
+
+  describe "GET control/cities" do
     before do
       city1 = stub_model(City, name: "Ankara")
       city2 = stub_model(City, name: "Bursa")

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "Categories" do
+  before do
+    login_as_admin
+  end
+
   describe "GET /categories" do
     before do
       category1 = stub_model(Category, name: "Emlak")

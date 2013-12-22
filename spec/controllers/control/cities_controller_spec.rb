@@ -7,6 +7,10 @@ describe Control::CitiesController do
   let(:valid_session) { {} }
   let!(:city) { create :city }
 
+  before do
+    login_as_admin
+  end
+
   describe "GET index" do
     it "assigns all cities as @cities" do
       city =  double
