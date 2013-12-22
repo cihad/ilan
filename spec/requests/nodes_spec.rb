@@ -48,11 +48,9 @@ describe "Nodes" do
     end
 
     it "display breadcrumb" do
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t('home')
-
-      expect(page).to have_selector '.breadcrumb li',
-                      text: node.title
+      expect(page).to have_breadcrumbs [I18n.t('home'), 
+                                        node.category.name,
+                                        node.title]
     end
   end
 

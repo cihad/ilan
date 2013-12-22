@@ -17,6 +17,9 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
   # FactoryGirl
   config.include FactoryGirl::Syntax::Methods
+
+  # Test Helpers
+  config.include TestHelpers
   
   # ## Mock Framework
   #
@@ -56,5 +59,13 @@ end
 RSpec::Matchers.define :like_of do |expected|
   match do |actual|
     normalize(actual) == normalize(expected)
+  end
+end
+
+class Capybara::Session
+  def has_breadcrumbs? breadcrumbs
+    Array(breadcrumbs).map do |breadcrumb|
+      has_selector? '.breadcrumb li' and has_content? breadcrumb
+    end.all?
   end
 end

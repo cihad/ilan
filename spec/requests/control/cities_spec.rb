@@ -31,15 +31,13 @@ describe "Control::Cities" do
     end
 
     it "display breadcrumbs" do
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("home")
-
-      expect(page).to have_selector '.breadcrumb li',
-                      text: I18n.t("cities.index.cities")
+      expect(page).to have_breadcrumbs [ I18n.t("home"),
+                                         I18n.t("control"),
+                                         I18n.t("cities.index.cities")]
     end
   end
 
-  describe "GET /cities/new" do
+  describe "GET control/cities/new" do
     before do
       visit new_control_city_path
     end
@@ -59,18 +57,14 @@ describe "Control::Cities" do
     end
 
     it "display breadcrumbs" do
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("home")
-
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("cities.index.cities")
-
-      expect(page).to have_selector '.breadcrumb li',
-                      text: I18n.t("cities.new.new_city")
+      expect(page).to have_breadcrumbs [I18n.t("home"),
+                                        I18n.t("control"),
+                                        I18n.t("cities.index.cities"),
+                                        I18n.t("cities.new.new_city")]
     end
   end
 
-  describe "GET /cities/:id/edit" do
+  describe "GET control/cities/:id/edit" do
     let!(:city) { create :city }
 
     before do
@@ -103,18 +97,14 @@ describe "Control::Cities" do
     end
 
     it "display breadcrumbs" do
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("home")
-
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("cities.index.cities")
-
-      expect(page).to have_selector '.breadcrumb li',
-                      text: I18n.t("cities.edit.editing_city")
+      expect(page).to have_breadcrumbs [I18n.t("home"),
+                                        I18n.t("control"),
+                                        I18n.t("cities.index.cities"),
+                                        I18n.t("cities.edit.editing_city")]
     end
   end
 
-  describe "DELETE /cities/:id" do
+  describe "DELETE control/cities/:id" do
     it "destroys city" do
       city = create :city
       visit control_cities_path

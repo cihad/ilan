@@ -29,15 +29,12 @@ describe "Categories" do
     end
 
     it "display breadcrumbs" do
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("home")
-
-      expect(page).to have_selector '.breadcrumb li',
-                      text: I18n.t("categories.index.categories")
+      expect(page).to have_breadcrumbs [I18n.t("home"),
+                                        I18n.t("categories.index.categories")]
     end
   end
 
-  describe "GET /categories/new" do
+  describe "GET control/categories/new" do
     before do
       visit new_control_category_path
     end
@@ -57,18 +54,14 @@ describe "Categories" do
     end
 
     it "display breadcrumbs" do
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("home")
-
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("categories.index.categories")
-
-      expect(page).to have_selector '.breadcrumb li',
-                      text: I18n.t("categories.new.new_category")
+      expect(page).to have_breadcrumbs [I18n.t('home'),
+                                        I18n.t('control'),
+                                        I18n.t("categories.index.categories"),
+                                        I18n.t("categories.new.new_category")]
     end
   end
 
-  describe "GET /categories/:id/edit" do
+  describe "GET control/categories/:id/edit" do
     let!(:category) { create :category }
 
     before do
@@ -103,14 +96,10 @@ describe "Categories" do
     end
 
     it "display breadcrumbs" do
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("home")
-
-      expect(page).to have_selector '.breadcrumb li a',
-                      text: I18n.t("categories.index.categories")
-
-      expect(page).to have_selector '.breadcrumb li',
-                      text: I18n.t("categories.edit.editing_category")
+      expect(page).to have_breadcrumbs [I18n.t("home"),
+                                        I18n.t("control"),
+                                        I18n.t("categories.index.categories"),
+                                        I18n.t("categories.edit.editing_category")]
     end
   end
 
