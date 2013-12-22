@@ -10,19 +10,23 @@ describe "Control::BaseController" do
   end
 
   context "when login" do
-    it "displays control links" do
+    before do
       Category.stub(:count).and_return(23)
       City.stub(:count).and_return(45)
-
       login_as_admin
       visit control_path
+    end
 
+    it "displays control links" do
       expect(page).to have_selector 'li', text: I18n.t('control')
       expect(page).to have_selector 'li a', text: I18n.t('categories.index.categories')
       expect(page).to have_selector 'li span', text: "23"
       expect(page).to have_selector 'li a', text: I18n.t('cities.index.cities')
       expect(page).to have_selector 'li span', text: "45"
+      expect(page).to have_selector 'li a', text: I18n.t('logout')
     end
+
+    it "logout session"
 
     it "display breadcrumb" do
       login_as_admin

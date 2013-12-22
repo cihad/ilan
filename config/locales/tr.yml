@@ -1,6 +1,7 @@
 tr:
   site_name: "Fastİlan"
   home: "Anasayfa"
+  logout: "Çıkış yap"
 
   control: "Site Kontrol"
 
