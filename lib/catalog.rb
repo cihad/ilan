@@ -25,8 +25,17 @@ class Catalog
     end
   end
 
-  def list
-    list = Array.new(columns) { [] }
+  def sort_by_node_count grouped_nodes
+    sorted_array = grouped_nodes.to_a.sort do |a, b|
+      b.last.size <=> a.last.size
+    end.inject({}) do |hash, arr|
+      hash[arr.first] = arr.last
+      hash
+    end
+  end
+
+  def catalog
+    catalog = Array.new(columns) { [] }
     column = 0
 
     if actual_total_node_count < expected_total_node_count
@@ -36,18 +45,18 @@ class Catalog
       node_count_each_column = node_count_per_column
       grouped_nodes = grep_grouped_nodes
     end
-                              
-    grouped_nodes.each do |category, nodes|
-      column += 1 unless node_count_for(list[column]) < node_count_each_column
-      list[column] << category
+
+    sort_by_node_count(grouped_nodes).each do |category, nodes|
+      column += 1 unless node_count_for(catalog[column]) < node_count_each_column
+      catalog[column] << category
 
       nodes.each do |node|
-        column += 1 unless node_count_for(list[column]) < node_count_each_column
-        list[column] << node
+        column += 1 unless node_count_for(catalog[column]) < node_count_each_column
+        catalog[column] << node
       end
     end
 
-    list
+    catalog
   end
 
   private

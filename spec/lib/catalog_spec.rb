@@ -69,13 +69,13 @@ describe Catalog do
     let(:node4) { mock_model Node }
 
     let(:grouped_nodes) {{
-      category1 => [node1, node2, node3],
-      category2 => [node4]
+      category2 => [node4],
+      category1 => [node1, node2, node3]
     }}
 
     context "when greater than or equal to expected node count" do
-      it "gives a list" do
-        expect(described_class.new(grouped_nodes, columns: 2, node_count_per_column: 2).list).to eq([
+      it "gives a catalog" do
+        expect(described_class.new(grouped_nodes, columns: 2, node_count_per_column: 2).catalog).to eq([
           [category1, node1, node2],
           [node3, category2, node4] 
         ])
@@ -83,12 +83,27 @@ describe Catalog do
     end
 
     context "when less than expected node count" do
-      it "gives a list" do
-        expect(described_class.new(grouped_nodes, columns: 2, node_count_per_column: 4).list).to eq([ 
+      it "gives a catalog" do
+        expect(described_class.new(grouped_nodes, columns: 2, node_count_per_column: 4).catalog).to eq([ 
           [category1, node1, node2],
           [node3, category2, node4] 
         ])
       end
+    end
+
+    it "sort by category node count" do
+      grouped_nodes = {
+        category2 => [node4],
+        category1 => [node1, node2, node3]
+      }
+
+      expect(
+        described_class.
+          new(double).
+          sort_by_node_count(grouped_nodes).
+          first).to eq(
+        [category1, [node1, node2, node3]]
+      )
     end
   end
 end
