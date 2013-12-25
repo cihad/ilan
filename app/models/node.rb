@@ -11,6 +11,9 @@ class Node < ActiveRecord::Base
   belongs_to :city
   belongs_to :category
 
+  # Scopes
+  scope :published, -> { where(status: "published") }
+
   # Workflow
   include Workflow
   workflow_column :status
@@ -38,6 +41,17 @@ class Node < ActiveRecord::Base
 
   def expire
     NodeStatusMailer.expired(self).deliver!
+  end
+
+  def self.group_by_category
+    unscoped.
+      select(:id, :title, :category_id).
+        includes(:category).
+          published.
+            order(updated_at: :desc).
+              group_by do |n|
+                n.category
+              end
   end
 
 end

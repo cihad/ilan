@@ -6,6 +6,10 @@ FactoryGirl.define do
     email "example@example.com"
     city
     category
+
+    factory :published_node do
+      status "published"
+    end
   end
 
   factory :city do

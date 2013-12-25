@@ -115,4 +115,28 @@ describe Node do
       last_mail_subject.should eq(mail_subject('expired'))
     end
   end
+
+  it "#published" do
+    expect {
+      create :published_node
+    }.to change(Node.published, :count).by(1)
+  end
+
+  it ".group_by_category" do
+    node1 = create :node
+    category1 = node1.category
+
+    node2 = create :published_node
+    category2 = node2.category
+
+    node3 = create :published_node, updated_at: 2.day.ago
+    category3 = node3.category
+
+    node4 = create :published_node, category: category3, updated_at: 1.day.ago
+
+    expect(described_class.group_by_category).to eq({
+      category2 => [node2],
+      category3 => [node4, node3]
+    })
+  end
 end
