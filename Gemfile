@@ -30,6 +30,7 @@ gem 'pry'
 gem 'workflow'
 gem 'simple_form', '3.0.1'
 gem 'bootstrap-sass', '3.0.3.0'
+gem 'faker', '1.2.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
