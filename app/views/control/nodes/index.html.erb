@@ -1,0 +1,42 @@
+<%= page_title t('nodes.index.nodes') %>
+<% breadcrumbs.item t('nodes.index.nodes') %>
+
+<%= simple_form_for :node_filter,
+                    url: control_nodes_path,
+                    method: :get,
+                    wrapper: :inline,
+                    html: {class: "form-inline"} do |f| %>
+
+  <%= f.input :status,
+              collection: Node.workflow_spec.state_names,
+              include_blank: false,
+              input_html: {class: "input-sm"} %>
+  <%= f.button :submit, class: "btn-default btn-sm" %>
+<% end %>
+
+<br />
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%=t 'nodes.index.node' %></th>
+      <th><%=t 'nodes.index.status' %></th>
+      <th><%=t 'nodes.index.actions' %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= content_tag_for(:tr, @nodes) do |node| %>
+      <td><%= link_to node.title, node %></td>
+      <td><%=t "nodes.status.#{node.status}" %></td>
+      <td class="actions">
+        <% node.current_state.events.each do |event, _| %>
+          <%= button_to t("nodes.events.#{event}"),
+                        control_node_path(node, event: event),
+                        method: :put,
+                        class: "btn btn-default btn-xs" %>
+        <% end %>
+      </td>
+    <% end %>
+  </tbody>
+</table>

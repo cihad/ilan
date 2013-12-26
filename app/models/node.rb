@@ -13,6 +13,7 @@ class Node < ActiveRecord::Base
 
   # Scopes
   scope :published, -> { where(status: "published") }
+  default_scope { order(updated_at: :desc) }
 
   # Workflow
   include Workflow

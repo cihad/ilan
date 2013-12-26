@@ -15,8 +15,20 @@ tr:
     select:
       prompt: "Lütfen seçiniz"
     submit:
+      submit: "Gönder"
       create: "Ekle"
       update: "Güncelle"
+      node_filter:
+        submit: "Filtrele"
+
+  simple_form:
+    options:
+      node_filter:
+        status:
+          pending_approval: "Onay bekliyor"
+          published: "Onaylanmış"
+          expired: "Süresi dolmuş"
+          rejected: "Reddedilmiş"
 
 
   activerecord:
@@ -49,6 +61,11 @@ tr:
         name: "Kategori"
 
   nodes:
+    index:
+      status: "Durum"
+      nodes: "İlanlar"
+      node: "İlan"
+      actions: "Aksiyonlar"
     show:
       description: "Açıklama"
       contact: "İletişim"
@@ -56,6 +73,15 @@ tr:
       category: "Kategori"
     new:
       new_node: "Yeni ilan"
+    status:
+      pending_approval: "Onay bekliyor"
+      published: "Yayınlandı"
+      rejected: "Yayınlanmadı"
+      expired: "Süresi doldu"
+    events:
+      publish: "Yayınla"
+      reject: "Reddet"
+      expire: "Yayından kaldır"
     flash:
       created: "İlan başarılı bir şekilde eklendi."
       not_created: "İlan kaydedilemedi. Lütfen formu gözden geçirin."

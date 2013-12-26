@@ -14,5 +14,12 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :inline, tag: :div, class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label, wrap_with: { tag: :span, class: "sr-only"}
+    b.use :input
+  end
+
   config.default_wrapper = :bootstrap
 end

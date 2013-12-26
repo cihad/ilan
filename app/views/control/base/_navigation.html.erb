@@ -3,6 +3,10 @@
     <%= link_to_unless_current t('control'), control_path %>
   </li>
   <li class="list-group-item">
+    <span class="badge"><%= Node.count %></span>
+    <%= link_to_unless_current t('nodes.index.nodes'), control_nodes_path %>
+  </li>
+  <li class="list-group-item">
     <span class="badge"><%= Category.count %></span>
     <%= link_to_unless_current t('categories.index.categories'), control_categories_path %>
   </li>

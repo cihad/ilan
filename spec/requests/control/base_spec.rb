@@ -13,6 +13,7 @@ describe "Control::BaseController" do
     before do
       Category.stub(:count).and_return(23)
       City.stub(:count).and_return(45)
+      Node.stub(:count).and_return(67)
       login_as_admin
       visit control_path
     end
@@ -20,8 +21,13 @@ describe "Control::BaseController" do
     it "displays control links" do
       expect(page).to have_selector 'li', text: I18n.t('control')
       expect(page).to have_selector 'li a', text: I18n.t('categories.index.categories')
+
+      expect(page).to have_selector 'li span', text: "67"
+      expect(page).to have_selector 'li a', text: I18n.t('node.index.node')
+
       expect(page).to have_selector 'li span', text: "23"
       expect(page).to have_selector 'li a', text: I18n.t('cities.index.cities')
+
       expect(page).to have_selector 'li span', text: "45"
       expect(page).to have_selector 'li a', text: I18n.t('logout')
     end

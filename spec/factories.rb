@@ -1,6 +1,6 @@
 FactoryGirl.define do  
   factory :node do
-    title "Lorem ipsum dolor sit amet"
+    sequence(:title) { |n| "Lorem Ipsum Dolor Sit Amet #{n}" }
     description "Consectetur adipisicing elit."
     contact "Excepteur sint occaecat cupidatat non"
     email "example@example.com"

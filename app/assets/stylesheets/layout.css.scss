@@ -85,3 +85,8 @@ body {
 #logo a {
   color: #333;
 }
+
+td.actions form,
+td.actions form div {
+  display: inline;
+}

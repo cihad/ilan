@@ -9,6 +9,7 @@ Ilan::Application.routes.draw do
 
   namespace :control do
     get "/" => "base#index"
+    resources :nodes, only: [:index, :update]
     resources :categories, except: :show
     resources :cities, except: [:show]
   end
