@@ -23,7 +23,7 @@ describe "Control::BaseController" do
       expect(page).to have_selector 'li a', text: I18n.t('categories.index.categories')
 
       expect(page).to have_selector 'li span', text: "67"
-      expect(page).to have_selector 'li a', text: I18n.t('node.index.node')
+      expect(page).to have_selector 'li a', text: I18n.t('nodes.index.nodes')
 
       expect(page).to have_selector 'li span', text: "23"
       expect(page).to have_selector 'li a', text: I18n.t('cities.index.cities')
