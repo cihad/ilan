@@ -20,6 +20,13 @@ describe Node do
     end
   end
 
+  it "default scope" do
+    node1 = create :node, updated_at: 2.day.ago
+    node2 = create :node, updated_at: 1.day.ago
+
+    expect(Node.all).to eq([node2, node1])
+  end
+
   describe "#email" do
     it do
       subject.email = "unvalid_email@example"
