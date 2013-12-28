@@ -5,8 +5,10 @@
   <tbody>
     <% @nodes.each do |node| %>
       <tr>
-        <td><%= link_to node.title, node %></td>
+        <td><%= link_to decorate_bold(node.title).html_safe, node %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @nodes, theme: "bootstrap" %>

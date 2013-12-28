@@ -3,7 +3,9 @@ Ilan::Application.routes.draw do
   
   get "home_page/index"
 
-  resources :categories, only: :show
+  resources :categories, only: :show do
+    get ':id/page/:page', :action => :show, :on => :collection
+  end
 
   resources :nodes, only: [:show, :new, :create]
 

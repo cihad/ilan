@@ -5,7 +5,7 @@ describe "CategoriesController" do
   let(:category) { create :category, name: "Sample Category" }
 
   before do
-    create :node, category: category, title: "Lorem Ipsum"
+    create :published_node, category: category, title: "Lorem Ipsum"
     create :node, category: category, title: "Sit Amet"
     visit category_path category
   end
@@ -15,11 +15,49 @@ describe "CategoriesController" do
   end
 
   it "displays category nodes" do
-    expect(page).to have_selector '.node-table tbody tr', count: 2
+    expect(page).to have_selector '.node-table tbody tr', count: 1
     expect(page).to have_selector '.node-table td a', text: "Lorem Ipsum"
-    expect(page).to have_selector '.node-table td a', text: "Sit Amet"
   end
 
-  it "displays pager when category nodes count greater than 20"
+  it "displays only published nodes" do
+    expect(page).to_not have_selector '.node-table td a', text: "Sit Amet"
+  end
+
+  it "not display pager when category nodes count less than 20" do
+    expect(page).to_not have_selector '#pager'    
+  end
+
+  it "displays breadcrumb" do
+    expect(page).to have_breadcrumbs [I18n.t('home'), category.name]
+  end
+
+  describe "nodes count greater than 20" do
+    before do
+      category.nodes.delete_all
+      21.times { create :published_node, category: category }
+      visit category_path category
+    end
+    
+    it "displays pager" do
+      expect(page).to have_selector '#pager'
+    end
+
+    it "displays 20 nodes on page 1" do
+      expect(page).to have_selector '.node-table tbody tr', count: 20
+    end
+
+    it "displays 1 node on page 2" do
+      visit category_path [category, :page, 2]
+      expect(page).to have_selector '.node-table tbody tr', count: 1
+    end
+
+    it "displays pager buttons" do
+      expect(page).to have_selector '#pager .btn-primary', text: "1"
+      expect(page).to have_selector '#pager i.glyphicon-chevron-right'
+      visit category_path(category, page: 2)
+      expect(page).to have_selector '#pager .btn-primary', text: "2"
+      expect(page).to have_selector '#pager i.glyphicon-chevron-left'
+    end
+  end
 
 end

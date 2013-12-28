@@ -9,7 +9,7 @@ describe CategoriesController do
     Category.stub(:find).with("123").and_return(category)
 
     nodes = double
-    category.stub_chain(:nodes, :order).and_return(nodes)
+    category.stub_chain(:nodes, :with_published_state, :order, :page, :per).and_return(nodes)
     get :show, {:id => category.to_param}, valid_session
 
     expect(assigns(:category)).to eq(category)
