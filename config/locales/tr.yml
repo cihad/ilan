@@ -30,6 +30,16 @@ tr:
           expired: "Süresi dolmuş"
           rejected: "Reddedilmiş"
 
+  views:
+    pagination:
+      first: "İlk"
+      last: "Son"
+      previous:
+        html: <i class="glyphicon glyphicon-chevron-left"></i> önceki
+      next:
+        html: sonraki <i class="glyphicon glyphicon-chevron-right"></i>
+      truncate: "..."
+
 
   activerecord:
     errors:
