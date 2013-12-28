@@ -53,7 +53,7 @@ RSpec.configure do |config|
 end
 
 def normalize str
-  str.split("\n").map(&:strip).join
+  str.split("\n").map(&:strip).delete_if(&:empty?).join(" ")
 end
 
 RSpec::Matchers.define :like_of do |expected|

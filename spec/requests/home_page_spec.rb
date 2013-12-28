@@ -21,6 +21,22 @@ describe "Home Page" do
       end
     end
 
+    context "body" do
+      it "displays presentation" do
+        category = mock_model Category, name: "Sample Category"
+        node = mock_model Node, title: "Sample Node"
+        catalog = [[category, node, node], [category, node]]
+        Catalog.any_instance.stub(:catalog).and_return(catalog)
+
+        visit root_path
+        expect(page).to have_selector ".presentation .col-sm-6", count: 2
+        expect(page).to have_selector ".presentation h4", count: 2
+        expect(page).to have_selector "h4", text: "Sample Category"
+        expect(page).to have_selector ".presentation p", count: 3
+        expect(page).to have_selector "p", text: "Sample Node"
+      end
+    end
+
     context "footer" do
       it "displays footer" do
         expect(page).to have_selector ".footer"
