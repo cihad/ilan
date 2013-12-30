@@ -72,4 +72,41 @@ describe "CategoriesController" do
     end
   end
 
+  describe "category selector" do
+    let(:category) { create :category, name: "Lorem Ipsum" }
+
+    before do
+      visit root_path
+    end
+
+    it "displays city selector" do
+      expect(page).to have_selector "#category-selector"
+    end
+
+    it "displays categories" do
+      Category.all.each do |category|
+        expect(page).to have_selector "#category-selector ul li a", text: "Lorem Ipsum"
+      end
+    end
+
+    it "when click to category goes to category page" do
+      within("#category-selector") do
+        click_link "Lorem Ipsum"
+      end
+
+      expect(current_path).to eq(category_path(category))
+    end
+
+    it "displays categories title" do
+      expect(page).to have_selector "#category-selector .dropdown-toggle",
+                      text: I18n.t('categories.index.categories')
+    end
+
+    it "displays current category on category selector button on current category page" do
+      visit category_path category
+      expect(page).to have_selector "#category-selector .dropdown-toggle",
+                      text: "Lorem Ipsum"
+    end
+  end
+
 end
