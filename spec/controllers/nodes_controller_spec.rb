@@ -22,6 +22,11 @@ describe NodesController do
       get :new, {}, valid_session
       assigns(:node).should be_a_new(Node)
     end
+
+    it "assigns a new node selected city" do
+      get :new, {}, valid_session
+      expect(assigns(:node).city_id).to eq(controller.send(:current_city).id)
+    end
   end
 
   describe "POST create" do

@@ -103,6 +103,7 @@ describe "Nodes" do
             fill_in "node_description", with: ""
             fill_in "node_contact", with: ""
             fill_in "node_email", with: ""
+            select "", from: "node_city_id"
             click_on I18n.t('helpers.submit.create')
           end
         }.to_not change(Node, :count)

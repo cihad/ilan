@@ -7,7 +7,7 @@ class NodesController < ApplicationController
   end
 
   def new
-    @node = Node.new
+    @node = Node.new(city_id: current_city.id)
   end
 
   def create
