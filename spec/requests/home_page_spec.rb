@@ -33,11 +33,27 @@ describe "Home Page" do
         expect(page).to_not have_selector "p", text: "Lorem Ipsum"
         expect(page).to have_selector "p", text: "Dolor Sit Amet"
       end
+
+      it "category selector filters nodes by category" do
+        node1 = create :published_node, title: "Lorem Ipsum"
+        node2 = create :published_node, title: "Dolor Sit Amet"
+
+        visit root_path
+        click_link node1.category.name
+        click_link node1.city.name
+        expect(page).to have_selector "td", text: "Lorem Ipsum"
+        expect(page).to_not have_content "Dolor Sit Amet"
+
+        click_link node2.category.name
+        click_link node2.city.name
+        expect(page).to_not have_content "Lorem Ipsum"
+        expect(page).to have_selector "td", text: "Dolor Sit Amet"
+      end
     end
 
     context "body" do
       it "displays presentation" do
-        category = mock_model Category, name: "Sample Category"
+        category = mock_model Category, name: "Sample Category", icon: "bullhorn"
         node = mock_model Node, title: "Sample Node"
         catalog = [[category, node, node], [category, node]]
         Catalog.any_instance.stub(:catalog).and_return(catalog)
@@ -46,6 +62,7 @@ describe "Home Page" do
         expect(page).to have_selector ".presentation .col-sm-6", count: 2
         expect(page).to have_selector ".presentation h4", count: 2
         expect(page).to have_selector "h4", text: "Sample Category"
+        expect(page).to have_selector "i.glyphicon-#{category.icon}"
         expect(page).to have_selector ".presentation p", count: 3
         expect(page).to have_selector "p", text: "Sample Node"
       end

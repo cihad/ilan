@@ -43,6 +43,10 @@ describe "Nodes" do
       expect(page).to have_selector 'dt', text: I18n.t('nodes.show.category')
     end
 
+    it "display category icon" do
+      expect(page).to have_selector "i.glyphicon-#{node.category.icon}"
+    end
+
     it "display category" do
       expect(page).to have_selector 'dd', text: node.category.name
     end

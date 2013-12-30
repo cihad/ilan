@@ -16,6 +16,10 @@ describe "CategoriesController" do
     expect(page).to have_selector '.page-header h3', text: "Sample Category"
   end
 
+  it "displays category icon" do
+    expect(page).to have_selector ".glyphicon-#{category.icon}"
+  end
+
   it "displays category nodes" do
     expect(page).to have_selector '.node-table tbody tr', count: 1
     expect(page).to have_selector '.node-table td a', text: "Lorem Ipsum"
@@ -79,13 +83,14 @@ describe "CategoriesController" do
       visit root_path
     end
 
-    it "displays city selector" do
+    it "displays category selector" do
       expect(page).to have_selector "#category-selector"
     end
 
-    it "displays categories" do
+    it "displays categories names and icons" do
       Category.all.each do |category|
         expect(page).to have_selector "#category-selector ul li a", text: "Lorem Ipsum"
+        expect(page).to have_selector "#category-selector ul li a .glyphicon-#{category.icon}"
       end
     end
 
@@ -102,10 +107,15 @@ describe "CategoriesController" do
                       text: I18n.t('categories.index.categories')
     end
 
-    it "displays current category on category selector button on current category page" do
+    it "displays current category name on button" do
       visit category_path category
       expect(page).to have_selector "#category-selector .dropdown-toggle",
                       text: "Lorem Ipsum"
+    end
+
+    it "displays current category icon on button" do
+      visit category_path category
+      expect(page).to have_selector ".glyphicon-#{category.icon}"
     end
   end
 

@@ -1,5 +1,6 @@
 <%= simple_form_for(['control', @category], html: {class: "form-horizontal"}) do |f| %>
   <%= f.input :name %>
+  <%= f.input :icon %>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <%= f.button :submit, class: "btn-primary" %>

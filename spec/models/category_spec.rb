@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Category do
 
-  let(:subject) { build :category, name: "Sample Category" }
+  let(:subject) { build :category, name: "Sample Category", icon: "nice-icon" }
   its(:name) { should eq("Sample Category") }
 
   it "name is required" do
@@ -18,4 +18,13 @@ describe Category do
     expect(category2.errors.keys).to include(:name)
   end
 
+  describe "icon" do
+    its(:icon) { should eq("nice-icon") }
+
+    it "has default value" do
+      subject.icon = ""
+      subject.save
+      expect(subject.icon).to eq("bullhorn")
+    end
+  end
 end

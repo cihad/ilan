@@ -45,7 +45,7 @@ module Control
       end
 
       def category_params
-        params.require(:category).permit(:name)
+        params.require(:category).permit(:name, :icon)
       end
 
       def set_breadcrumb

@@ -69,6 +69,7 @@ tr:
         name: "Şehir"
       category:
         name: "Kategori"
+        icon: "İkon"
 
   nodes:
     index:

@@ -14,7 +14,7 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.name %></td>
+        <td><%= icon category.icon %> <%= category.name %></td>
         <td><%= link_to t('categories.index.edit'), edit_control_category_path(category) %></td>
         <td><%= link_to t('categories.index.destroy'), ['control', category], method: :delete, data: { confirm: t('categories.index.are_you_sure') } %></td>
       </tr>
