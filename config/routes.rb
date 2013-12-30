@@ -7,6 +7,8 @@ Ilan::Application.routes.draw do
     get ':id/page/:page', :action => :show, :on => :collection
   end
 
+  resources :cities, only: :show
+
   resources :nodes, only: [:show, :new, :create]
 
   namespace :control do
