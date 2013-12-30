@@ -130,18 +130,20 @@ describe Node do
   end
 
   it ".group_by_category" do
-    node1 = create :node
-    category1 = node1.category
+    city1 = create :city
+    city2 = create :city
 
-    node2 = create :published_node
-    category2 = node2.category
+    category1 = create :category
+    category2 = create :category
+    category3 = create :category
 
-    node3 = create :published_node, updated_at: 2.day.ago
-    category3 = node3.category
+    node1 = create :node,           city: city1, category: category1
+    node2 = create :published_node, city: city1, category: category2
+    node3 = create :published_node, city: city1, category: category3, updated_at: 2.day.ago
+    node4 = create :published_node, city: city1, category: category3, updated_at: 1.day.ago
+    node5 = create :published_node, city: city2, category: category3
 
-    node4 = create :published_node, category: category3, updated_at: 1.day.ago
-
-    expect(described_class.group_by_category).to eq({
+    expect(described_class.group_by_category(city1)).to eq({
       category2 => [node2],
       category3 => [node4, node3]
     })

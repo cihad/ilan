@@ -3,11 +3,13 @@ require 'spec_helper'
 describe "CategoriesController" do
   
   let(:category) { create :category, name: "Sample Category" }
+  let(:city) { create :city }
 
   before do
-    create :published_node, category: category, title: "Lorem Ipsum"
-    create :node, category: category, title: "Sit Amet"
+    create :published_node, category: category, city: city, title: "Lorem Ipsum"
+    create :node, category: category, city: city, title: "Sit Amet"
     visit category_path category
+    click_link city.name
   end
 
   it "displays category title" do
@@ -31,11 +33,21 @@ describe "CategoriesController" do
     expect(page).to have_breadcrumbs [I18n.t('home'), category.name]
   end
 
+  it "city selector" do
+    create :published_node, category: category, title: "Duis aute irure dolor"
+    create :published_node, category: category, city: city, title: "Anim id est laborum"
+    visit category_path category
+    click_link city.name
+    expect(page).to_not have_selector 'td', text: "Duis aute irure dolor"
+    expect(page).to have_selector 'td', text: "Anim id est laborum"
+  end
+
   describe "nodes count greater than 20" do
     before do
       category.nodes.delete_all
-      21.times { create :published_node, category: category }
+      21.times { create :published_node, category: category, city: city }
       visit category_path category
+      click_link city.name
     end
     
     it "displays pager" do

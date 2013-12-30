@@ -44,15 +44,16 @@ class Node < ActiveRecord::Base
     NodeStatusMailer.expired(self).deliver!
   end
 
-  def self.group_by_category
+  def self.group_by_category city
     unscoped.
       select(:id, :title, :category_id).
         includes(:category).
-          published.
-            order(updated_at: :desc).
-              group_by do |n|
-                n.category
-              end
+          where(city_id: city.id).
+            published.
+              order(updated_at: :desc).
+                group_by do |n|
+                  n.category
+                end
   end
 
 end

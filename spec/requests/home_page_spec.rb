@@ -19,6 +19,20 @@ describe "Home Page" do
         click_link I18n.t('nodes.add_new_node')
         expect(current_path).to eq(new_node_path)
       end
+
+      it "city selector filters nodes by city" do
+        node1 = create :published_node, title: "Lorem Ipsum"
+        node2 = create :published_node, title: "Dolor Sit Amet"
+
+        visit root_path
+        click_link node1.city.name
+        expect(page).to have_selector "p", text: "Lorem Ipsum"
+        expect(page).to_not have_selector "p", text: "Dolor Sit Amet"
+
+        click_link node2.city.name
+        expect(page).to_not have_selector "p", text: "Lorem Ipsum"
+        expect(page).to have_selector "p", text: "Dolor Sit Amet"
+      end
     end
 
     context "body" do

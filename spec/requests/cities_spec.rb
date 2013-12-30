@@ -4,7 +4,7 @@ describe "Cities" do
 
   describe "City Selector" do
     it "display current city name on city selector button" do
-      city = double name: "Great City"
+      city = double id: nil, name: "Great City"
       ApplicationController.any_instance.stub(:current_city).and_return(city)
       visit root_path
       expect(page).to have_selector "#city-selector .dropdown-toggle", text: "Great City"
