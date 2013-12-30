@@ -7,11 +7,16 @@ class NodesController < ApplicationController
   end
 
   def new
-    @node = Node.new(city_id: current_city.id)
+    @node = Node.new(city_id: current_city.id, email: cookies[:email])
   end
 
   def create
     @node = Node.new(node_params)
+
+    @node.valid? # Perform validations
+
+    # If node email is valid format
+    cookies[:email] = @node.email unless @node.errors.keys.include? :email
 
     respond_to do |format|
       if @node.save

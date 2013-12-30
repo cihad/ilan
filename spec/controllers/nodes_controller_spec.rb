@@ -23,13 +23,32 @@ describe NodesController do
       assigns(:node).should be_a_new(Node)
     end
 
-    it "assigns a new node selected city" do
+    it "@node selected city" do
       get :new, {}, valid_session
       expect(assigns(:node).city_id).to eq(controller.send(:current_city).id)
+    end
+
+    it "@node get email from cookie" do
+      controller.send(:cookies)[:email] = "email@example.org"
+      get :new
+      expect(assigns(:node).email).to eq("email@example.org")
     end
   end
 
   describe "POST create" do
+    describe "email cookie" do
+      it "creates with valid email" do
+        post :create, {:node => {email: "ali@example.com"}}, valid_session
+        expect(controller.send(:cookies)[:email]).to eq("ali@example.com")
+      end
+
+      it "doesnt create with unvalid email" do
+        post :create, {:node => {email: "ali@example"}}, valid_session
+        expect(controller.send(:cookies)[:email]).to be_nil
+      end
+    end
+
+
     describe "with valid params" do
       it "creates a new Node" do
         expect {
@@ -64,6 +83,7 @@ describe NodesController do
         response.should render_template("new")
       end
     end
+
   end
 
 end

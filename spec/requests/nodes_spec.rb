@@ -69,6 +69,24 @@ describe "Nodes" do
       expect(page).to have_selector '.page-header', text: I18n.t('nodes.new.new_node')
     end
 
+    context "node email" do
+      it "displays cookie email when valid email" do
+        fill_in "node_email", with: "valid_email@example.com"
+        click_on I18n.t('helpers.submit.create')
+
+        visit new_node_path
+        expect(page.find_field('node_email').value).to eq("valid_email@example.com")
+      end
+
+      it "doesnt display cookie email when invalid email" do
+        fill_in "node_email", with: "invalid_email@example"
+        click_on I18n.t('helpers.submit.create')
+
+        visit new_node_path
+        expect(page.find_field('node_email').value).to be_nil
+      end
+    end
+
     context "#with valid attributes" do
       let(:valid_attributes) { FactoryGirl.attributes_for :node }
 
