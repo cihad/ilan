@@ -1,0 +1,10 @@
+<div class="btn-group" id="city-selector">
+  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+    <%= current_city.name %> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <%= content_tag_for :li, City.all do |city|%>
+      <%= link_to city.name, city %>
+    <% end %>
+  </ul>
+</div>

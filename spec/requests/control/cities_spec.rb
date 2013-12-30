@@ -7,15 +7,14 @@ describe "Control::Cities" do
 
   describe "GET control/cities" do
     before do
-      city1 = stub_model(City, name: "Ankara")
-      city2 = stub_model(City, name: "Bursa")
-      City.stub(:all).and_return([city1, city2])
+      create :city, name: "Ankara"
+      create :city, name: "Bursa"
       visit control_cities_path
     end
 
     it "display cities" do
-      expect(page).to have_content "Ankara"
-      expect(page).to have_content "Bursa"
+      expect(page).to have_selector 'td', text: "Ankara"
+      expect(page).to have_selector 'td', text: "Bursa"
     end
 
     ["cities", "city"].each do |word|
@@ -82,7 +81,7 @@ describe "Control::Cities" do
       }.to_not change(City, :count)
 
       expect(page).to have_content I18n.t('cities.flash.updated')
-      expect(page).to have_content "ExampleCity"
+      expect(page).to have_selector 'td', text: "ExampleCity"
     end
 
     it "display error messages" do
