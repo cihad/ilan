@@ -1,4 +1,5 @@
 require './lib/breadcrumbs'
+require 'default_city_policy'
 
 class ApplicationController < ActionController::Base
 
@@ -18,5 +19,17 @@ class ApplicationController < ActionController::Base
       unless params[:controller] == "home_page" and params[:action] == "index"
         breadcrumbs.item I18n.t('home'), root_path
       end
+    end
+
+    helper_method :current_city
+    def current_city
+      @_current_city ||=  session[:current_city_id] && 
+                            City.find_by(id: session[:current_city_id]) ||
+                          DefaultCityPolicy.default_city
+    end
+
+    def current_city= id
+      session[:current_city_id] = id
+      @_current_city = City.find_by(id: id)
     end
 end
