@@ -91,7 +91,7 @@ describe Catalog do
       end
     end
 
-    it "sort by category node count" do
+    it "#sort_by_node_count" do
       grouped_nodes = {
         category2 => [node4],
         category1 => [node1, node2, node3]

@@ -17,52 +17,52 @@ class Catalog
   end
 
   def grep_grouped_nodes
-    @grep_grouped_nodes ||= grouped_nodes_by_category.inject({}) do |hash, category_nodes|
-      category, nodes = category_nodes
-      percentage = nodes.size.to_f / actual_total_node_count
-      hash[category] = nodes.take((percentage * expected_total_node_count).floor)
-      hash
+    if actual_total_node_count < expected_total_node_count
+      grouped_nodes_by_category
+    else
+      grouped_nodes_by_category.inject({}) do |hash, category_nodes|
+        category, nodes = category_nodes
+        percentage = nodes.size.to_f / actual_total_node_count
+        hash[category] = nodes.take((percentage * expected_total_node_count).floor)
+        hash
+      end
     end
   end
 
+  # input => grouped_nodes = {
+  #   <Category1> => [<Node1>, <Node2>],
+  #   <Category2> => [<Node3>, <Node4>, <Node5>]
+  # }
+  #
+  # output => [
+  #   [<Category2>, [<Node3>, <Node4>, <Node5>]],
+  #   [<Category1>,[<Node1>, <Node2>]]
+  # ]
   def sort_by_node_count grouped_nodes
-    sorted_array = grouped_nodes.to_a.sort do |a, b|
-      b.last.size <=> a.last.size
-    end.inject({}) do |hash, arr|
-      hash[arr.first] = arr.last
-      hash
-    end
+    grouped_nodes.to_a.sort { |a, b| b.last.size <=> a.last.size }
   end
 
   def catalog
-    catalog = Array.new(columns) { [] }
-    column = 0
+    catalog = sort_by_node_count(grep_grouped_nodes).flatten.in_groups(columns, false)
+    category_class = catalog.first.first.class
 
-    if actual_total_node_count < expected_total_node_count
-      node_count_each_column = (actual_total_node_count.to_f / columns).floor
-      grouped_nodes = grouped_nodes_by_category
-    else
-      node_count_each_column = node_count_per_column
-      grouped_nodes = grep_grouped_nodes
-    end
 
-    sort_by_node_count(grouped_nodes).each do |category, nodes|
-      column += 1 unless node_count_for(catalog[column]) < node_count_each_column
-      catalog[column] << category
-
-      nodes.each do |node|
-        column += 1 unless node_count_for(catalog[column]) < node_count_each_column
-        catalog[column] << node
+    # input => catalog == [
+    #   [<Category1>, <Node1>, <Node2>, <Category2>],
+    #   [<Node3>, <Node4>, <Category3>, <Node5>]
+    # ]
+    #
+    # output => catalog == [
+    #   [<Category1>, <Node1>, <Node2>],
+    #   [<Category2>, <Node3>, <Node4>, <Category3>, <Node5>]
+    # ]
+    (0...catalog.size).each do |i|
+      if catalog[i].last.class == category_class
+        category = catalog[i].pop
+        catalog[i+1].unshift(category)
       end
     end
 
     catalog
   end
-
-  private
-
-  def node_count_for arr
-    arr.count { |thing| thing.is_a? Node }
-  end
-
 end
