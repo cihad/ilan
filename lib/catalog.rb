@@ -59,7 +59,7 @@ class Catalog
     (0...catalog.size).each do |i|
       if catalog[i].last.class == category_class
         category = catalog[i].pop
-        catalog[i+1].unshift(category)
+        catalog[i+1].unshift(category) if category
       end
     end
 
