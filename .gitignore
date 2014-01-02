@@ -18,3 +18,6 @@
 # Ignore editor specific .project file
 *.sublime-project
 *.sublime-workspace
+
+# Ignore application configuration
+/config/application.yml
