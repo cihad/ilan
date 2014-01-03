@@ -2,6 +2,8 @@
 <% breadcrumbs.item @node.category.name, @node.category %>
 <% breadcrumbs.item truncated_node_title %>
 
+<%= render 'node_status', node: @node unless @node.published? %>
+
 <dl class="dl-horizontal">
   <dt><%=t '.description' %></dt>
   <dd><p><%= @node.description %></p></dd>

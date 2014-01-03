@@ -82,6 +82,10 @@ tr:
       contact: "İletişim"
       city: "Şehir"
       category: "Kategori"
+      status:
+        pending_approval_html: "<strong>Henüz yayınlanmadı!</strong> Yöneticilerin ilanı onaylaması bekleniyor."
+        expired_html: "İlanın süresi dolmuş."
+        rejected_html: <strong>İlan yayınlanmadı.</strong> Tekrar eklemeyi deneyin.
     new:
       new_node: "Yeni ilan"
     status:

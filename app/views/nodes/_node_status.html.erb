@@ -1,0 +1,11 @@
+<%
+  alert_class = case node.status
+                  when "pending_approval" then "warning"
+                  when "expired" then "danger"
+                  when "rejected" then "danger"
+                  else "warning"
+                end
+%>
+<div class="alert alert-<%= alert_class %>">
+  <%=t "nodes.show.status.#{node.status}_html" %>
+</div>

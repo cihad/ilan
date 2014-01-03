@@ -11,6 +11,27 @@ describe "Nodes" do
       expect(page.status_code).to be(200)
     end
 
+
+    it "display status" do
+      def clear_strong text
+        text.gsub(/<\/?strong>/, "")
+      end
+
+      expect(page).to have_selector '.alert-warning',
+        text: clear_strong(I18n.t('nodes.show.status.pending_approval_html'))
+
+      visit node_path(create :published_node)
+      expect(page).to_not have_selector '.alert'
+
+      visit node_path(create :node, status: "expired")
+      expect(page).to have_selector '.alert-danger',
+        text: clear_strong(I18n.t('nodes.show.status.expired_html'))
+
+      visit node_path(create :node, status: "rejected")
+      expect(page).to have_selector '.alert-danger',
+        text: clear_strong(I18n.t('nodes.show.status.rejected_html'))
+    end
+
     it "display title" do
       expect(page).to have_selector '.page-header', text: node.title
     end
