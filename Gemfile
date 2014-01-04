@@ -33,6 +33,7 @@ gem 'bootstrap-sass', '3.0.3.0'
 gem 'faker', '1.2.0'
 gem 'kaminari', '0.15.0'
 gem 'figaro', '0.7.0'
+gem 'dragonfly', '1.0.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
