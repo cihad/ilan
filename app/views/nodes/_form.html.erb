@@ -2,6 +2,7 @@
   <%= f.input :title %>
   <%= f.input :description, as: :text %>
   <%= f.input :contact, as: :text %>
+  <%= f.input :imgs, as: :file, input_html: {multiple: true} %>
   <%= f.input :email, as: :email %>
   <%= f.association :city %>
   <%= f.association :category %>

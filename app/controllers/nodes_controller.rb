@@ -33,7 +33,7 @@ class NodesController < ApplicationController
 
     def node_params
       params.require(:node).permit( :title, :email, :description, :contact,
-                                    :city_id, :category_id)
+                                    :city_id, :category_id, imgs: [])
     end
 
     def set_layout

@@ -10,6 +10,25 @@ FactoryGirl.define do
     factory :published_node do
       status "published"
     end
+
+    factory :node_with_images do
+      ignore do
+        images_count 3
+      end
+
+      after(:build) do |node, evaluator|
+        node.images << FactoryGirl.build_list(:image, evaluator.images_count)
+      end
+    end
+  end
+
+  factory :image do
+    image do
+      r = rand(1..4)
+      File.new(Rails.root.join("spec/support/images/0#{r}.png"))
+    end
+
+    node
   end
 
   factory :city do

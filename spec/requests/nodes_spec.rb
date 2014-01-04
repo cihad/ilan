@@ -3,14 +3,13 @@ require 'spec_helper'
 describe "Nodes" do
   describe "GET /nodes/:id" do
 
-    let(:node) { create :node }
+    let(:node) { create :node_with_images }
 
     before { visit "/nodes/#{node.to_param}" }
 
     it "renders" do
       expect(page.status_code).to be(200)
     end
-
 
     it "display status" do
       def clear_strong text
@@ -34,6 +33,21 @@ describe "Nodes" do
 
     it "display title" do
       expect(page).to have_selector '.page-header', text: node.title
+    end
+
+    it "display images title" do
+      expect(page).to have_selector 'dt', text: I18n.t('nodes.show.images')
+    end
+
+    it "display images" do
+      expect(page).to have_selector '.carousel-inner .item', count: 3
+    end
+
+    it "display no image" do
+      node = create :node
+      visit node_path(node)
+      
+      expect(page).to have_selector 'dd', text: I18n.t('images.no_image')
     end
 
     it "display description title" do
@@ -71,6 +85,7 @@ describe "Nodes" do
     it "display category" do
       expect(page).to have_selector 'dd', text: node.category.name
     end
+
 
     it "display breadcrumb" do
       expect(page).to have_breadcrumbs [I18n.t('home'),
@@ -117,15 +132,14 @@ describe "Nodes" do
 
       it "creates a new node" do
         expect {
-          within("//form[@id='new_node']") do
-            fill_in "node_title", with: valid_attributes[:title]
-            fill_in "node_description", with: valid_attributes[:description]
-            fill_in "node_contact", with: valid_attributes[:contact]
-            fill_in "node_email", with: valid_attributes[:email]
-            select  "Ankara", from: "node_city_id"
-            select  "Emlak", from: "node_category_id"
-            click_on I18n.t('helpers.submit.create')
-          end
+          fill_in     "node_title",       with: valid_attributes[:title]
+          fill_in     "node_description", with: valid_attributes[:description]
+          fill_in     "node_contact",     with: valid_attributes[:contact]
+          fill_in     "node_email",       with: valid_attributes[:email]
+          attach_file "node_imgs",        [Rails.root.join('spec/support/images/01.png')]
+          select      "Ankara",           from: "node_city_id"
+          select      "Emlak",            from: "node_category_id"
+          click_on    I18n.t('helpers.submit.create')
         }.to change(Node, :count).by(1)
 
         expect(page).to have_content I18n.t('nodes.flash.created')

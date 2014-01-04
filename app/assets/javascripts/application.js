@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap/dropdown
+//= require bootstrap/carousel
 //= require_tree .
 
 $(document).on('page:fetch',   function() { NProgress.start(); });

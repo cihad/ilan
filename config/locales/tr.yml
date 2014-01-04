@@ -65,11 +65,14 @@ tr:
         email: "Email"
         city: "Şehir"
         category: "Kategori"
+        imgs: "Resimler"
       city:
         name: "Şehir"
       category:
         name: "Kategori"
         icon: "İkon"
+      image:
+        image: "Resim"
 
   nodes:
     index:
@@ -82,6 +85,7 @@ tr:
       contact: "İletişim"
       city: "Şehir"
       category: "Kategori"
+      images: "Resimler"
       status:
         pending_approval_html: "<strong>Henüz yayınlanmadı!</strong> Yöneticilerin ilanı onaylaması bekleniyor."
         expired_html: "İlanın süresi dolmuş."
@@ -103,6 +107,9 @@ tr:
     rejected_reasons:
       reason: "İlan ekleme kurallarına uymadığınızdan dolayı ilanınız yayınlanmadı."
     add_new_node: "İlan ekle"
+
+  images:
+    no_image: "Resim yok"
 
   cities:
     index:
@@ -139,6 +146,7 @@ tr:
       updated: "Kategori güncellendi."
       not_created: "Kategori kaydedilemedi. Lütfen formu gözden geçirin."
       not_updated: "Kategori güncellenmedi. Lütfen formu gözden geçirin."
+
 
   node_status_mailer:
     published:

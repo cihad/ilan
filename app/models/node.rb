@@ -10,6 +10,8 @@ class Node < ActiveRecord::Base
   # Associations
   belongs_to :city
   belongs_to :category
+  has_many   :images, dependent: :destroy
+  accepts_nested_attributes_for :images
 
   # Scopes
   scope :published, -> { where(status: "published") }
@@ -54,6 +56,14 @@ class Node < ActiveRecord::Base
                 group_by do |n|
                   n.category
                 end
+  end
+
+  def imgs= imgs
+    images << Array(imgs).map { |img| Image.new(image: img, node: self) }
+  end
+
+  def imgs
+    images
   end
 
 end

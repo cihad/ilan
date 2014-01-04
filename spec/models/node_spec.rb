@@ -148,4 +148,32 @@ describe Node do
       category3 => [node4, node3]
     })
   end
+
+  describe "#images" do
+    let(:node_with_images) { build :node_with_images }
+    subject { node_with_images }
+
+    its(:images) { should_not be_empty }
+
+    it { expect(subject.images).to have(3).items }
+
+    it "destroyers when node destroy" do
+      subject.save
+
+      expect {
+        subject.destroy
+      }.to change(Image, :count).by(-3)
+    end
+
+    it "saves when node save" do
+      subject.images.each do |image|
+        expect(image).to be_new_record
+      end
+
+      subject.save
+      subject.images.each do |image|
+        expect(image).to be_persisted
+      end
+    end
+  end
 end
