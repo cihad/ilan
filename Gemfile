@@ -61,3 +61,7 @@ group :development, :test do
   gem "libnotify", "~> 0.8.2"
   gem "launchy", "~> 2.4.0"
 end
+
+group :production do
+  gem 'unicorn', '4.7.0'
+end
