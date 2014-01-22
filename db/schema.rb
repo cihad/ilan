@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140103234324) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140103234324) do
     t.datetime "updated_at"
   end
 
-  add_index "images", ["node_id"], name: "index_images_on_node_id"
+  add_index "images", ["node_id"], name: "index_images_on_node_id", using: :btree
 
   create_table "nodes", force: true do |t|
     t.string   "title"
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140103234324) do
     t.string   "status"
   end
 
-  add_index "nodes", ["category_id"], name: "index_nodes_on_category_id"
-  add_index "nodes", ["city_id"], name: "index_nodes_on_city_id"
+  add_index "nodes", ["category_id"], name: "index_nodes_on_category_id", using: :btree
+  add_index "nodes", ["city_id"], name: "index_nodes_on_city_id", using: :btree
 
 end
