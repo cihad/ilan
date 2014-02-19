@@ -1,4 +1,5 @@
 ## İlan ([Demo](http://fastilan.herokuapp.com/))
+[![Build Status](https://travis-ci.org/cihad/ilan.png?branch=master)](https://travis-ci.org/cihad/ilan)
 
 İlan, gazete sayfalarında görmeye alışmış olduğumuz kutu ilan yapısını webe aktarmak fikrinden doğmuş bir [Ruby on Rails](http://www.rubyonrails.org) uygulamasıdır.
 
